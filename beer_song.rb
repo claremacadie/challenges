@@ -29,3 +29,52 @@ Iterate from first to second argument in steps of 1
   For 0, output no more bottles of beer, go to the store, 99 botltles of beer
 
 =end
+
+class BeerSong
+  def self.lyrics
+    self.verses(99,0)
+  end
+  
+  def self.verse(num)
+    recite_verse(num)
+  end
+  
+  def self.verses(first, last)
+    output = ''
+    
+    first.downto(last) do |num| 
+      output << recite_verse(num) 
+      output << "\n" if num > last
+    end
+    
+    output
+  end
+  
+  def self.recite_verse(num)
+    case num
+    when 3..99
+      "#{num} bottles of beer on the wall, #{num} bottles of beer.\n" \
+      "Take one down and pass it around, #{num-1} bottles of beer on the wall.\n"
+    when 2
+      "#{num} bottles of beer on the wall, #{num} bottles of beer.\n" \
+      "Take one down and pass it around, #{num-1} bottle of beer on the wall.\n"
+    when 1
+      "#{num} bottle of beer on the wall, #{num} bottle of beer.\n" \
+      "Take it down and pass it around, no more bottles of beer on the wall.\n"
+    when 0
+      "No more bottles of beer on the wall, no more bottles of beer.\n" \
+      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+    end
+  end
+end
+  
+# puts BeerSong.verse(0) # no bottles of beer on the wall
+# puts
+# puts BeerSong.verse(99) # 99 bottles of beer
+# puts
+# BeerSong.verses(99, 98) # two verses
+# puts
+# BeerSong.verses(2, 0) # three verses
+# puts
+# BeerSong.lyrics # whole song
+  
